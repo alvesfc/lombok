@@ -14,8 +14,9 @@ import java.util.Locale;
  */
 public enum LocaleEnum {
 
-	DEFAULT("locale_default", "pt", "BR"), ENGLISH_USA("locale_english_usa",
-			"en", "US"), SPANISH("locale_spanish", "es", "ES");
+	DEFAULT("locale_default", "pt", "BR"), 
+	ENGLISH_USA("locale_english_usa","en", "US"), 
+	SPANISH("locale_spanish", "es", "ES");
 
 	private String name;
 	private String language;
@@ -42,7 +43,6 @@ public enum LocaleEnum {
 	public static Locale[] getLocales() {
 		Locale[] suportedLocales = new Locale[LocaleEnum.values().length];
 		int i = 0;
-
 		for (LocaleEnum locale : LocaleEnum.values()) {
 			suportedLocales[i] = new Locale(locale.language, locale.country);
 			i++;
@@ -59,9 +59,9 @@ public enum LocaleEnum {
 	}
 
 	public static LocaleEnum getLocale(Locale locale) {
-
 		for (LocaleEnum l : LocaleEnum.values()) {
-			if (l.getCountry().equals(locale.getCountry())) {
+			if (l.getCountry().equals(locale.getCountry())
+					&& l.getLanguage().equals(locale.getLanguage())) {
 				return l;
 			}
 		}
