@@ -6,66 +6,84 @@ package br.com.lombok.enumerator;
 import java.util.Locale;
 
 /**
- * Enumerator respons√°vel em armazenar os idiomas que ser√£o<BR>
- * utilizados na Aplica√ß√£o.
+ * Enumerator respons·vel em armazenar os idiomas que ser„o<BR>
+ * utilizados na AplicaÁ„o.
  * 
  * @author Marcos Alves Cunha
  * @version 1.0
  */
 public enum LocaleEnum {
 
-	DEFAULT("locale_default", "pt", "BR"), 
-	ENGLISH_USA("locale_english_usa","en", "US"), 
-	SPANISH("locale_spanish", "es", "ES");
+    DEFAULT("locale_default", "pt", "BR"), 
+    ENGLISH_USA("locale_english_usa","en", "US"), 
+    SPANISH("locale_spanish", "es", "ES");
 
-	private String name;
-	private String language;
-	private String country;
+    private String name;
+    private String language;
+    private String country;
 
-	private LocaleEnum(String name, String language, String country) {
-		this.name = name;
-		this.language = language;
-		this.country = country;
-	}
+    private LocaleEnum(String name, String language, String country) {
+        this.name = name;
+        this.language = language;
+        this.country = country;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public String getLanguage() {
+        return language;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public String getCountry() {
+        return country;
+    }
 
-	public static Locale[] getLocales() {
-		Locale[] suportedLocales = new Locale[LocaleEnum.values().length];
-		int i = 0;
-		for (LocaleEnum locale : LocaleEnum.values()) {
-			suportedLocales[i] = new Locale(locale.language, locale.country);
-			i++;
-		}
-		return suportedLocales;
-	}
+    /**
+     * MÈtodo respons·vel em retornar todos os idiomas suportados.
+     * 
+     * @return Array de objetos do tipo {@link Locale} .
+     * 
+     */
+    public static Locale[] getLocales() {
+        Locale[] suportedLocales = new Locale[LocaleEnum.values().length];
+        int i = 0;
+        for (LocaleEnum locale : LocaleEnum.values()) {
+            suportedLocales[i] = new Locale(locale.language, locale.country);
+            i++;
+        }
+        return suportedLocales;
+    }
 
-	public static Locale getLocale(LocaleEnum locale) {
-		if (locale != null) {
-			Locale loc = new Locale(locale.getLanguage(), locale.getCountry());
-			return loc;
-		}
-		return null;
-	}
+    /**
+     * MÈtodo respons·vel em converter um tipo {@link LocaleEnum} para {@link Locale} 
+     * de acordo com o par‚metro passado.
+     * @param locale objeto do tipo {@link LocaleEnum}
+     * @return objeto {@link Locale} 
+     */
+    public static Locale getLocale(LocaleEnum locale) {
+        Locale loc = null;
+        if (locale != null) {
+            loc = new Locale(locale.getLanguage(), locale.getCountry());
+        }
+        return loc;
+    }
 
-	public static LocaleEnum getLocale(Locale locale) {
-		for (LocaleEnum l : LocaleEnum.values()) {
-			if (l.getCountry().equals(locale.getCountry())
-					&& l.getLanguage().equals(locale.getLanguage())) {
-				return l;
-			}
-		}
-		return null;
-	}
+    /**
+     * MÈtodo respons·vel em converter um tipo {@link Locale} para {@link LocaleEnum} 
+     * de acordo com o par‚metro passado.
+     * @param locale objeto do tipo {@link Locale}
+     * @return objeto {@link LocaleEnum} 
+     */
+    public static LocaleEnum getLocale(Locale locale) {
+        for (LocaleEnum l : LocaleEnum.values()) {
+            if (l.getCountry().equals(locale.getCountry())
+                    && l.getLanguage().equals(locale.getLanguage())) {
+                return l;
+            }
+        }
+        return null;
+    }
 
 }
