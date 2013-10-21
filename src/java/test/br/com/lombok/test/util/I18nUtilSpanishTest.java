@@ -58,7 +58,7 @@ public class I18nUtilSpanishTest {
 
 	@Test
 	public void shouldCurrencyFormatter() {
-		String result = "3,00 €";
+		String result = "3,00 â‚¬";
 
 		NumberFormat nf = i18nUtil.getCurrencyFormatter(locale);
 		Assert.assertEquals(nf.format(3), result);
